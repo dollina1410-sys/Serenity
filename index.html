@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Serenity — Автономний браслет нейрорегуляції</title>
+  <title>Serenity — Інвестиційна презентація</title>
+  <link rel="icon" type="image/png" href="4.png">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
     * {
       margin: 0;
@@ -16,30 +17,36 @@
     :root {
       --primary: #4D6CFA;
       --accent: #6d85ff;
-      --secondary: #A86CFF;
-      --gradient: linear-gradient(135deg, #4D6CFA 0%, #6d85ff 50%, #A86CFF 100%);
-      --bg-light: #fafbff;
+      --secondary: #FFD93D;
+      --gradient: linear-gradient(135deg, #4D6CFA 0%, #6d85ff 50%, #FFD93D 100%);
+      --bg: #ffffff;
       --text-dark: #1a1a2e;
-      --text-light: #ffffff;
+      --text-gray: #5a5a6e;
     }
 
     body {
       font-family: 'Inter', sans-serif;
-      background-color: var(--bg-light);
+      background: #f5f7fa;
       color: var(--text-dark);
-      overflow-x: hidden;
       line-height: 1.6;
     }
 
-    /* Анімовані частинки у header */
-    header {
-      position: relative;
-      padding: 140px 20px 180px;
-      text-align: center;
-      background: var(--gradient);
-      color: var(--text-light);
+    /* Контейнер документа */
+    .document {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: white;
+      box-shadow: 0 10px 60px rgba(0,0,0,0.1);
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 20px 60px rgba(77,108,250,0.4);
+    }
+
+    /* Шапка з логотипом */
+    .header {
+      background: var(--gradient);
+      padding: 60px 60px 80px;
+      position: relative;
+      overflow: hidden;
     }
 
     .particles {
@@ -75,7 +82,7 @@
       transform: translate(-50%, -50%);
       width: 300px;
       height: 300px;
-      border: 2px solid rgba(255,255,255,0.3);
+      border: 2px solid rgba(255,255,255,0.2);
       border-radius: 50%;
       animation: pulse 3s infinite ease-out;
     }
@@ -85,14 +92,38 @@
       100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
     }
 
-    header h1 {
-      font-size: 4.5rem;
-      font-weight: 800;
-      letter-spacing: -2px;
-      margin: 0;
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 100%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: rotate 25s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .logo-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 35px;
       position: relative;
       z-index: 2;
-      text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    .logo {
+      width: 120px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       animation: fadeInDown 1s ease;
     }
 
@@ -101,15 +132,28 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    header p {
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 30px rgba(0,0,0,0.25));
+    }
+
+    .header h1 {
+      display: none;
+    }
+
+    .header .subtitle {
+      color: rgba(255,255,255,0.95);
+      font-size: 1.3rem;
+      font-weight: 300;
       max-width: 750px;
-      margin: 30px auto 40px;
-      font-size: 1.25rem;
       line-height: 1.8;
       position: relative;
       z-index: 2;
-      font-weight: 300;
-      animation: fadeInUp 1s ease 0.2s backwards;
+      margin: 0 auto;
+      text-align: center;
+      animation: fadeInUp 1s ease 0.4s backwards;
     }
 
     @keyframes fadeInUp {
@@ -117,354 +161,322 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    header a.button {
-      display: inline-block;
-      background: white;
-      color: var(--primary);
-      text-decoration: none;
-      padding: 18px 50px;
-      border-radius: 50px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      position: relative;
-      z-index: 2;
-      animation: fadeInUp 1s ease 0.4s backwards;
+    /* Основний контент */
+    .content {
+      padding: 60px 70px;
     }
 
-    header a.button:hover {
-      background: #f0f2ff;
-      transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    .section {
+      margin-bottom: 50px;
+      padding-bottom: 50px;
+      border-bottom: 2px solid #f0f0f0;
     }
 
-    header small {
-      display: block;
-      margin-top: 15px;
-      color: rgba(255,255,255,0.9);
-      font-size: 0.9rem;
-      position: relative;
-      z-index: 2;
-      animation: fadeInUp 1s ease 0.6s backwards;
+    .section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
     }
 
-    section {
-      max-width: 1200px;
-      margin: 100px auto;
-      padding: 0 30px;
-      text-align: center;
-    }
-
-    section h2 {
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-size: 2.5rem;
+    .section-title {
+      font-size: 1.8rem;
       font-weight: 700;
-      margin-bottom: 30px;
-      letter-spacing: -1px;
-    }
-
-    section p {
-      font-size: 1.15rem;
-      color: #555;
-      line-height: 1.8;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    /* Прототипи з hover ефектами */
-    .prototypes-wrapper {
+      color: var(--primary);
+      margin-bottom: 20px;
       display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      gap: 50px;
-      flex-wrap: nowrap;
-      margin-top: 70px;
-      flex-direction: row;
+      align-items: center;
+      gap: 12px;
     }
 
-    .proto {
-      background: white;
-      border-radius: 24px;
-      width: 300px;
-      box-shadow: 0 10px 40px rgba(77,108,250,0.1);
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    .section-title::before {
+      content: '';
+      width: 5px;
+      height: 28px;
+      background: var(--gradient);
+      border-radius: 3px;
+    }
+
+    .section-text {
+      font-size: 1.05rem;
+      color: var(--text-gray);
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+
+    /* Прототипи */
+    .prototypes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 35px;
+      margin-top: 40px;
+    }
+
+    .proto-card {
+      background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+      border-radius: 20px;
+      padding: 35px 25px;
       text-align: center;
-      padding: 30px;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid transparent;
       position: relative;
       overflow: hidden;
-      cursor: pointer;
     }
 
-    .proto::before {
+    .proto-card::before {
       content: '';
       position: absolute;
       top: 0;
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(77,108,250,0.1), transparent);
+      background: linear-gradient(90deg, transparent, rgba(77,108,250,0.08), transparent);
       transition: left 0.5s;
     }
 
-    .proto:hover::before {
+    .proto-card:hover::before {
       left: 100%;
     }
 
-    .proto:hover {
-      transform: translateY(-12px) scale(1.05);
-      box-shadow: 0 20px 60px rgba(77,108,250,0.25);
+    .proto-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(77,108,250,0.2);
     }
 
-    .proto img {
-      width: auto;
-      height: 320px;
+    .proto-card img {
+      width: 100%;
+      height: 240px;
       object-fit: contain;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       transition: transform 0.5s ease;
     }
 
-    .proto:hover img {
-      transform: scale(1.08);
+    .proto-card:hover img {
+      transform: scale(1.1);
     }
 
-    .proto h3 {
+    .proto-card h4 {
       color: var(--primary);
-      margin-bottom: 12px;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 700;
     }
 
-    .proto p {
-      font-size: 0.95rem;
-      color: #666;
-      line-height: 1.6;
+    .proto-evolution {
+      text-align: center;
+      margin-top: 30px;
+      padding: 18px;
+      background: linear-gradient(135deg, #f0f2ff 0%, #ffffff 100%);
+      border-radius: 16px;
+      font-size: 1rem;
+      color: var(--text-gray);
+      border-left: 4px solid var(--primary);
     }
 
-    /* CTA з градієнтом та анімацією */
-    .cta {
+    .proto-evolution strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Команда */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .team-member {
       text-align: center;
-      margin: 120px auto;
-      padding: 80px 30px;
+      padding: 30px;
+      background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+      border-radius: 20px;
+      transition: all 0.4s ease;
+      border: 2px solid transparent;
+    }
+
+    .team-member:hover {
+      background: linear-gradient(135deg, #f0f2ff 0%, #ffffff 100%);
+      transform: translateY(-8px);
+      border-color: rgba(77,108,250,0.3);
+      box-shadow: 0 15px 40px rgba(77,108,250,0.15);
+    }
+
+    .team-photo {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 18px;
+      border: 4px solid white;
+      box-shadow: 0 8px 25px rgba(77,108,250,0.2);
+      transition: all 0.4s ease;
+    }
+
+    .team-member:hover .team-photo {
+      transform: scale(1.08);
+      box-shadow: 0 12px 35px rgba(77,108,250,0.3);
+    }
+
+    .team-member h4 {
+      color: var(--text-dark);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .team-role {
+      color: var(--primary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .team-bio {
+      font-size: 0.9rem;
+      color: var(--text-gray);
+      line-height: 1.5;
+    }
+
+    /* Контакти */
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+      padding: 30px;
+      border-radius: 16px;
+      text-align: center;
+      transition: all 0.4s ease;
+      border: 2px solid transparent;
+    }
+
+    .contact-box:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-5px) scale(1.03);
+      border-color: var(--primary);
+      box-shadow: 0 15px 40px rgba(77,108,250,0.3);
+    }
+
+    .contact-box:hover .contact-icon {
+      transform: scale(1.1);
+    }
+
+    .contact-box:hover a {
+      color: white;
+    }
+
+    .contact-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      transition: transform 0.3s;
+    }
+
+    .contact-box h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .contact-box a {
+      color: var(--text-gray);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+
+    /* CTA кнопка */
+    .cta-section {
       background: var(--gradient);
-      color: var(--text-light);
-      border-radius: 32px;
-      box-shadow: 0 20px 60px rgba(77,108,250,0.4);
+      padding: 50px;
+      border-radius: 16px;
+      text-align: center;
+      margin: 40px 0;
       position: relative;
       overflow: hidden;
     }
 
-    .cta::before {
+    .cta-section::before {
       content: '';
       position: absolute;
       top: -50%;
-      right: -50%;
+      left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-      animation: rotate 20s linear infinite;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+      animation: pulse-slow 8s ease-in-out infinite;
     }
 
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    @keyframes pulse-slow {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 0.8; }
     }
 
-    .cta h2 {
-      background: none;
-      -webkit-background-clip: unset;
-      -webkit-text-fill-color: white;
+    .cta-section h3 {
       color: white;
-      font-size: 2.2rem;
-      margin-bottom: 20px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 15px;
       position: relative;
       z-index: 1;
     }
 
-    .cta p {
+    .cta-section p {
       color: rgba(255,255,255,0.95);
-      font-size: 1.2rem;
-      margin-bottom: 35px;
+      font-size: 1.1rem;
+      margin-bottom: 25px;
       position: relative;
       z-index: 1;
     }
 
-    .cta a.button {
+    .btn-primary {
       background: white;
       color: var(--primary);
-      text-decoration: none;
-      padding: 18px 50px;
+      padding: 15px 40px;
       border-radius: 50px;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 600;
-      display: inline-block;
-      transition: all 0.4s ease;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      position: relative;
-      z-index: 1;
-    }
-
-    .cta a.button:hover {
-      background: #f0f2ff;
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-    }
-
-    .cta small {
-      display: block;
-      margin-top: 15px;
-      font-size: 0.9rem;
-      opacity: 0.9;
-      position: relative;
-      z-index: 1;
-    }
-
-    footer {
-      text-align: center;
-      padding: 50px 20px;
-      background: #1a1a2e;
-      color: #aaa;
-      font-size: 0.95rem;
-    }
-
-    footer a {
-      color: #999;
       text-decoration: none;
-      transition: color 0.3s;
-      margin: 0 8px;
+      display: inline-block;
+      transition: all 0.3s;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      position: relative;
+      z-index: 1;
+      cursor: pointer;
+      border: none;
     }
 
-    footer a:hover {
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+      background: #f0f2ff;
+    }
+
+    /* Футер */
+    .footer {
+      background: #1a1a2e;
+      padding: 40px 60px;
+      color: #999;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .footer a {
+      color: #bbb;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .footer a:hover {
       color: var(--accent);
     }
 
-    /* Команда */
-    .team-section {
-      background: white;
-      border-radius: 32px;
-      padding: 70px 30px;
-      box-shadow: 0 10px 40px rgba(77,108,250,0.1);
-      margin: 100px auto;
-      max-width: 1200px;
-    }
-
-    .team-members {
-      display: flex;
-      justify-content: center;
-      gap: 50px;
-      flex-wrap: wrap;
-      margin-top: 50px;
-    }
-
-    .member {
-      text-align: center;
-      width: 280px;
-      transition: transform 0.4s ease;
-    }
-
-    .member:hover {
-      transform: translateY(-10px);
-    }
-
-    .member-photo {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 20px;
-      border: 5px solid transparent;
-      background: var(--gradient);
-      padding: 5px;
-      box-shadow: 0 10px 30px rgba(77,108,250,0.2);
-      transition: all 0.4s ease;
-    }
-
-    .member:hover .member-photo {
-      box-shadow: 0 15px 40px rgba(77,108,250,0.35);
-      transform: scale(1.05);
-    }
-
-    .member h3 {
-      color: var(--primary);
-      font-size: 1.4rem;
-      margin-bottom: 8px;
-      font-weight: 700;
-    }
-
-    .member .role {
-      color: #666;
-      font-size: 1rem;
-      margin-bottom: 15px;
-      font-weight: 500;
-    }
-
-    .member p {
-      color: #777;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    /* Контакти */
-    .contacts-section {
-      background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
-      border-radius: 32px;
-      padding: 70px 30px;
-      box-shadow: 0 10px 40px rgba(77,108,250,0.08);
-      margin: 100px auto;
-      max-width: 1200px;
-    }
-
-    .contacts-grid {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-      margin-top: 50px;
-    }
-
-    .contact-item {
-      background: white;
-      border-radius: 20px;
-      padding: 30px;
-      width: 280px;
-      box-shadow: 0 5px 20px rgba(77,108,250,0.1);
-      transition: all 0.3s ease;
-      text-align: center;
-    }
-
-    .contact-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(77,108,250,0.2);
-    }
-
-    .contact-icon {
-      font-size: 2.5rem;
-      margin-bottom: 15px;
-      color: var(--primary);
-    }
-
-    .contact-item h3 {
-      color: var(--primary);
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-      font-weight: 600;
-    }
-
-    .contact-item p, .contact-item a {
-      color: #666;
-      font-size: 1rem;
-      line-height: 1.6;
-      text-decoration: none;
-    }
-
-    .contact-item a:hover {
-      color: var(--primary);
-    }
-
-    /* Модальне вікно замовлення */
+    /* Модальне вікно */
     .modal {
       display: none;
       position: fixed;
@@ -472,53 +484,54 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.7);
       z-index: 1000;
       align-items: center;
       justify-content: center;
-      animation: fadeIn 0.3s ease;
     }
 
     .modal.active {
       display: flex;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
     .modal-content {
       background: white;
-      border-radius: 24px;
-      padding: 50px;
-      max-width: 600px;
+      border-radius: 20px;
+      padding: 45px;
+      max-width: 550px;
       width: 90%;
       max-height: 90vh;
       overflow-y: auto;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
       position: relative;
-      animation: slideUp 0.4s ease;
+      animation: slideIn 0.4s ease;
     }
 
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes slideIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
     }
 
     .modal-close {
       position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 2rem;
+      top: 15px;
+      right: 15px;
+      font-size: 1.8rem;
       color: #999;
       cursor: pointer;
       background: none;
       border: none;
-      transition: color 0.3s;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.3s;
     }
 
     .modal-close:hover {
+      background: #f0f0f0;
       color: #333;
     }
 
@@ -527,41 +540,41 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      font-size: 2rem;
-      margin-bottom: 20px;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
     }
 
     .modal-content p {
       color: #555;
-      font-size: 1.05rem;
+      font-size: 1rem;
       line-height: 1.7;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
 
     .order-form {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
     }
 
     .form-group {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
     }
 
     .form-group label {
       color: #333;
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
 
     .form-group input,
     .form-group textarea {
-      padding: 14px 18px;
+      padding: 12px 16px;
       border: 2px solid #e0e0e0;
-      border-radius: 12px;
-      font-size: 1rem;
+      border-radius: 10px;
+      font-size: 0.95rem;
       font-family: 'Inter', sans-serif;
       transition: all 0.3s;
     }
@@ -575,31 +588,31 @@
 
     .form-group textarea {
       resize: vertical;
-      min-height: 100px;
+      min-height: 90px;
     }
 
     .submit-btn {
       background: var(--gradient);
       color: white;
-      padding: 16px 40px;
+      padding: 14px 35px;
       border: none;
       border-radius: 50px;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s;
-      margin-top: 10px;
+      margin-top: 8px;
     }
 
     .submit-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(77,108,250,0.3);
+      box-shadow: 0 8px 25px rgba(77,108,250,0.3);
     }
 
     .success-message {
       display: none;
       text-align: center;
-      padding: 30px;
+      padding: 25px;
     }
 
     .success-message.active {
@@ -607,149 +620,188 @@
     }
 
     .success-icon {
-      font-size: 4rem;
+      font-size: 3.5rem;
       color: #4CAF50;
-      margin-bottom: 20px;
-    }
-
-    [data-fade] {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    [data-fade].visible {
-      opacity: 1;
-      transform: translateY(0);
+      margin-bottom: 15px;
     }
 
     /* Responsive */
-    @media (max-width: 950px) {
-      header h1 { font-size: 3rem; }
-      header p { font-size: 1.1rem; }
-      .prototypes-wrapper {
-        flex-wrap: wrap;
-        gap: 35px;
-      }
-      .proto img { height: 280px; }
-      section h2 { font-size: 2rem; }
+    @media (max-width: 900px) {
+      .document { margin: 20px; }
+      .header, .content, .footer { padding: 40px 35px; }
+      .prototypes, .team-grid, .contacts-grid { grid-template-columns: 1fr; }
+      .header .subtitle { font-size: 1.15rem; }
+      .logo { width: 90px; height: 90px; }
     }
 
     @media (max-width: 600px) {
-      header h1 { font-size: 2.2rem; }
-      header p { font-size: 1rem; }
-      .proto { width: 280px; padding: 20px; }
-      .member { width: 260px; }
-      .member-photo { width: 150px; height: 150px; }
+      .header, .content, .footer { padding: 30px 25px; }
+      .logo { width: 75px; height: 75px; }
+      .section-title { font-size: 1.4rem; }
+      .modal-content { padding: 35px 25px; }
+      .proto-card img { height: 180px; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="particles" id="particles"></div>
-    <div class="pulse-ring"></div>
-    <div class="pulse-ring" style="animation-delay: 1s;"></div>
-    <div class="pulse-ring" style="animation-delay: 2s;"></div>
-    
-    <h1>Serenity</h1>
-    <p>Автономний браслет нейрорегуляції, що поєднує вібраційне заземлення та голосовий супровід для миттєвого спокою — без смартфона, без мережі.</p>
-    <a href="#cta" class="button">Передзамовити зараз</a>
-    <small>Перші 100 користувачів — спеціальна ціна на запуск.</small>
-  </header>
+  <div class="document">
+    <!-- Шапка -->
+    <div class="header">
+      <div class="particles" id="particles"></div>
+      <div class="pulse-ring"></div>
+      <div class="pulse-ring" style="animation-delay: 1s;"></div>
+      <div class="pulse-ring" style="animation-delay: 2s;"></div>
+      
+      <style>
+  .logo img {
+    width: 180%; 
+    height: auto;
+  }
+</style>
 
-  <section id="prototypes" data-fade>
-    <h2>Прототипи Serenity</h2>
-    <div class="prototypes-wrapper">
-      <div class="proto">
-        <img src="1.png" alt="Serenity Alpha">
-        <h3>Serenity Alpha</h3>
-      </div>
-      <div class="proto">
-        <img src="2.png" alt="Serenity Pulse">
-        <h3>Serenity Pulse</h3>
-      </div>
-      <div class="proto">
-        <img src="3.png" alt="Serenity Core">
-        <h3>Serenity Core</h3>
+<div class="logo-title">
+  <div class="logo">
+    <img src="4.png" alt="Serenity Logo">
+  </div>
+</div>
+      <div class="subtitle">
+        Автономний браслет нейрорегуляції для миттєвого спокою — без смартфона, без мережі. Інноваційне рішення для управління стресом у будь-якій ситуації.
       </div>
     </div>
-    <p style="margin-top:40px;color:#777;font-size:1rem;">Alpha → Pulse → Core → <strong style="color:var(--primary);">Next: Serenity AI</strong></p>
-  </section>
 
-  <section class="team-section" data-fade>
-    <h2>Наша команда</h2>
-    <p style="margin-bottom: 20px;">Ми — команда науковців, інженерів та дизайнерів, що створюють майбутнє технологій ментального здоров'я.</p>
-    <div class="team-members">
-      <div class="member">
-        <img src="team1.png" alt="Член команди 1" class="member-photo">
-        <h3>Ім'я Прізвище</h3>
-        <div class="role">CEO & Засновник</div>
-        <p>Експерт у нейротехнологіях з 10-річним досвідом розробки пристроїв для ментального здоров'я.</p>
+    <!-- Основний контент -->
+    <div class="content">
+      
+      <!-- Про проєкт -->
+      <div class="section">
+        <h2 class="section-title">Про проєкт</h2>
+        <p class="section-text">
+          Serenity — це революційний носимий пристрій, розроблений для допомоги людям у керуванні стресом та тривожністю в режимі реального часу. На відміну від традиційних рішень, що потребують підключення до смартфона або інтернету, Serenity працює повністю автономно.
+        </p>
+        <p class="section-text">
+          Наша технологія поєднує нейровібраційне заземлення з голосовим супроводом, створюючи персоналізований досвід заспокоєння, доступний у будь-який момент. Це не просто гаджет — це ваш особистий асистент ментального здоров'я, що завжди з вами.
+        </p>
+        <p class="section-text">
+          Ринок носимих пристроїв для здоров'я зростає на 20% щорічно, а попит на рішення для ментального здоров'я досяг історичного максимуму. Serenity займає унікальну нішу — ми створюємо не просто трекер, а активний інструмент втручання та підтримки.
+        </p>
       </div>
-      <div class="member">
-        <img src="team2.png" alt="Член команди 2" class="member-photo">
-        <h3>Ім'я Прізвище</h3>
-        <div class="role">CTO & Head of Engineering</div>
-        <p>Провідний інженер з досвідом у розробці носимих пристроїв та систем штучного інтелекту.</p>
+
+      <!-- Прототипи -->
+      <div class="section">
+        <h2 class="section-title">Еволюція прототипів</h2>
+        <p class="section-text">
+          Наша команда пройшла шлях від концепції до функціонуючих прототипів. Кожна ітерація приносила нові інсайти та вдосконалення технології.
+        </p>
+        <div class="prototypes">
+          <div class="proto-card">
+            <img src="1.png" alt="Serenity Alpha">
+            <h4>Serenity Alpha</h4>
+          </div>
+          <div class="proto-card">
+            <img src="2.png" alt="Serenity Pulse">
+            <h4>Serenity Pulse</h4>
+          </div>
+          <div class="proto-card">
+            <img src="3.png" alt="Serenity Core">
+            <h4>Serenity Core</h4>
+          </div>
+        </div>
+        <div class="proto-evolution">
+          Alpha → Pulse → Core → <strong>Наступний крок: Serenity AI з машинним навчанням</strong>
+        </div>
       </div>
-      <div class="member">
-        <img src="team3.png" alt="Член команди 3" class="member-photo">
-        <h3>Ім'я Прізвище</h3>
-        <div class="role">Head of Design</div>
-        <p>Дизайнер з фокусом на user experience та створення інтуїтивних інтерфейсів для здоров'я.</p>
+
+      <!-- Команда -->
+      <div class="section">
+        <h2 class="section-title">Наша команда</h2>
+        <p class="section-text">
+          Ми — мультидисциплінарна команда професіоналів, які об'єднали експертизу в нейронауці, інженерії та дизайні для створення продукту світового рівня.
+        </p>
+        <div class="team-grid">
+          <div class="team-member">
+            <img src="team1.png" alt="CEO" class="team-photo">
+            <h4>Ім'я Прізвище</h4>
+            <div class="team-role">CEO & Засновник</div>
+            <p class="team-bio">Нейробіолог з 10-річним досвідом у розробці медичних пристроїв. PhD у когнітивній нейронауці.</p>
+          </div>
+          <div class="team-member">
+            <img src="team2.png" alt="CTO" class="team-photo">
+            <h4>Ім'я Прізвище</h4>
+            <div class="team-role">CTO & Lead Engineer</div>
+            <p class="team-bio">Експерт у носимих пристроях та IoT. Колишній провідний інженер у провідній tech-компанії.</p>
+          </div>
+          <div class="team-member">
+            <img src="team3.png" alt="Head of Design" class="team-photo">
+            <h4>Ім'я Прізвище</h4>
+            <div class="team-role">Head of Design</div>
+            <p class="team-bio">UX/UI дизайнер з фокусом на health tech. Створює інтерфейси, що рятують життя.</p>
+          </div>
+        </div>
       </div>
+
+      <!-- CTA -->
+      <div class="cta-section">
+        <h3>Приєднуйтесь до революції ментального здоров'я</h3>
+        <p>Будьте серед перших, хто отримає доступ до Serenity та спеціальні інвестиційні умови</p>
+        <button class="btn-primary" onclick="openModal(event)">Залишити заявку</button>
+      </div>
+
+      <!-- Контакти -->
+      <div class="section">
+        <h2 class="section-title">Контакти</h2>
+        <p class="section-text">
+          Маєте питання або бажаєте обговорити інвестиційні можливості? Ми завжди відкриті до діалогу.
+        </p>
+        <div class="contacts-grid">
+          <div class="contact-box">
+            <div class="contact-icon">📧</div>
+            <h4>Email</h4>
+            <a href="mailto:invest@serenity.ua">invest@serenity.ua</a>
+          </div>
+          <div class="contact-box">
+            <div class="contact-icon">📱</div>
+            <h4>Телефон</h4>
+            <a href="tel:+380123456789">+38 (012) 345-67-89</a>
+          </div>
+          <div class="contact-box">
+            <div class="contact-icon">💬</div>
+            <h4>Telegram</h4>
+            <a href="https://t.me/serenity_invest" target="_blank">@serenity_invest</a>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </section>
 
-  <section class="contacts-section" data-fade>
-    <h2>Зв'яжіться з нами</h2>
-    <p style="margin-bottom: 20px;">Маєте питання? Ми завжди раді допомогти та відповісти на всі ваші запитання.</p>
-    <div class="contacts-grid">
-      <div class="contact-item">
-        <div class="contact-icon">📧</div>
-        <h3>Email</h3>
-        <a href="mailto:hello@serenity.ua">hello@serenity.ua</a>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">📱</div>
-        <h3>Телефон</h3>
-        <a href="tel:+380123456789">+38 (012) 345-67-89</a>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">💬</div>
-        <h3>Telegram</h3>
-        <a href="https://t.me/serenity_support" target="_blank">@serenity_support</a>
-      </div>
+    <!-- Футер -->
+    <div class="footer">
+      © 2025 Serenity. Технології відновлення стійкості.<br><br>
+      <a href="#">Про компанію</a> | 
+      <a href="#">Команда</a> | 
+      <a href="#">Контакти</a> | 
+      <a href="#">Конфіденційність</a>
     </div>
-  </section>
-
-  <div id="cta" class="cta" data-fade>
-    <h2>Serenity — коли спокій не залежить від зв'язку</h2>
-    <p>Відчуй, як технологія стає підтримкою. Замов свій браслет сьогодні.</p>
-    <a href="#" class="button" onclick="openModal(event)">Замовити браслет</a>
-    <small>Безкоштовне тестування прототипу для перших 50 учасників.</small>
   </div>
 
-  <!-- Модальне вікно замовлення -->
+  <!-- Модальне вікно -->
   <div class="modal" id="orderModal">
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal()">&times;</button>
       
       <div id="formSection">
         <h2>Дякуємо за ваш інтерес!</h2>
-        <p>Наш сайт перебуває на завершальній стадії розробки. Ми цінуємо ваше бажання стати частиною нашої спільноти.</p>
-        <p>Залиште свої контактні дані, і ви будете серед перших, хто отримає ексклюзивне запрошення до запуску продажів і спеціальні умови для ранніх користувачів.</p>
+        <p>Ми цінуємо вашу зацікавленість у проєкті Serenity. Заповніть форму нижче, і наша команда зв'яжеться з вами найближчим часом для обговорення деталей співпраці та інвестиційних можливостей.</p>
         
         <form class="order-form" onsubmit="submitForm(event)">
           <div class="form-group">
-            <label for="name">Ім'я *</label>
-            <input type="text" id="name" name="name" required placeholder="Ваше ім'я">
+            <label for="name">Ім'я та прізвище *</label>
+            <input type="text" id="name" name="name" required placeholder="Іван Іваненко">
           </div>
           
           <div class="form-group">
             <label for="email">Email *</label>
-            <input type="email" id="email" name="email" required placeholder="your@email.com">
+            <input type="email" id="email" name="email" required placeholder="ivan@example.com">
           </div>
           
           <div class="form-group">
@@ -758,8 +810,8 @@
           </div>
           
           <div class="form-group">
-            <label for="message">Коментар (необов'язково)</label>
-            <textarea id="message" name="message" placeholder="Поділіться, що вас найбільше цікавить у Serenity..."></textarea>
+            <label for="message">Повідомлення</label>
+            <textarea id="message" name="message" placeholder="Розкажіть, що вас цікавить: інвестиції, партнерство, або щось інше..."></textarea>
           </div>
           
           <button type="submit" class="submit-btn">Надіслати заявку</button>
@@ -769,30 +821,16 @@
       <div class="success-message" id="successMessage">
         <div class="success-icon">✓</div>
         <h2>Заявку успішно надіслано!</h2>
-        <p>Дякуємо за вашу зацікавленість. Ми зв'яжемося з вами одразу після запуску.</p>
-        <p>Очікуйте на ексклюзивні новини та спеціальні пропозиції!</p>
+        <p>Дякуємо за вашу зацікавленість. Наша команда зв'яжеться з вами протягом 24 годин.</p>
+        <p>Очікуйте на детальну інформацію про проєкт та інвестиційні можливості!</p>
       </div>
     </div>
   </div>
 
-  <footer>
-    © 2025 Serenity. Технології відновлення стійкості.<br><br>
-    <a href="#">Про нас</a> | <a href="#">Команда</a> | <a href="#">Контакти</a> | <a href="#">Політика конфіденційності</a>
-  </footer>
-
   <script>
-    // Fade-in анімація при скролі
-    const elements = document.querySelectorAll('[data-fade]');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.1 });
-    elements.forEach(el => observer.observe(el));
-
-    // Генерація анімованих частинок у header
+    // Генерація анімованих частинок
     const particlesContainer = document.getElementById('particles');
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 35; i++) {
       const particle = document.createElement('div');
       particle.className = 'particle';
       particle.style.left = Math.random() * 100 + '%';
@@ -801,7 +839,7 @@
       particlesContainer.appendChild(particle);
     }
 
-    // Функції модального вікна
+    // Модальне вікно
     function openModal(e) {
       e.preventDefault();
       document.getElementById('orderModal').classList.add('active');
@@ -811,7 +849,6 @@
     function closeModal() {
       document.getElementById('orderModal').classList.remove('active');
       document.body.style.overflow = 'auto';
-      // Скинути форму через 300мс після закриття
       setTimeout(() => {
         document.getElementById('formSection').style.display = 'block';
         document.getElementById('successMessage').classList.remove('active');
@@ -821,21 +858,13 @@
 
     function submitForm(e) {
       e.preventDefault();
-      
-      // Тут можна додати відправку даних на сервер
-      // const formData = new FormData(e.target);
-      
-      // Показати повідомлення про успіх
       document.getElementById('formSection').style.display = 'none';
       document.getElementById('successMessage').classList.add('active');
-      
-      // Автоматично закрити модальне вікно через 3 секунди
       setTimeout(() => {
         closeModal();
-      }, 3000);
+      }, 4000);
     }
 
-    // Закриття модального вікна при кліку поза ним
     document.getElementById('orderModal').addEventListener('click', function(e) {
       if (e.target === this) {
         closeModal();
