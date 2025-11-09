@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Serenity — Інвестiційна презентація</title>
+  <title>Serenity — Інвестиційна презентація</title>
   <link rel="icon" type="image/png" href="4.png">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -35,22 +35,136 @@
       line-height: 1.6;
     }
 
-    /* Контейнер документа */
-    .document {
-      max-width: 1000px;
-      margin: 40px auto;
-      background: white;
-      box-shadow: 0 10px 60px rgba(0,0,0,0.1);
-      border-radius: 12px;
-      overflow: hidden;
+    /* Навігація */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+      z-index: 999;
+      padding: 15px 0;
+      transform: translateY(-100%);
+      transition: transform 0.3s ease;
+    }
+
+    .nav.visible {
+      transform: translateY(0);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-gray);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      background: var(--gradient);
+      color: white;
+      padding: 10px 25px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(77,108,250,0.3);
+    }
+
+    /* Кнопка вгору */
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s;
+      z-index: 998;
+      box-shadow: 0 5px 20px rgba(77,108,250,0.3);
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .scroll-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(77,108,250,0.4);
     }
 
     /* Шапка */
     .header {
       background: var(--gradient);
-      padding: 60px 60px 80px;
+      padding: 120px 60px 100px;
       position: relative;
       overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .particles {
@@ -112,13 +226,19 @@
       to { transform: rotate(360deg); }
     }
 
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+    }
+
     .logo-title {
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 35px;
-      position: relative;
-      z-index: 2;
     }
 
     .header h1 {
@@ -140,10 +260,8 @@
       color: rgba(255,255,255,0.95);
       font-size: 1.3rem;
       font-weight: 300;
-      max-width: 750px;
+      max-width: 850px;
       line-height: 1.8;
-      position: relative;
-      z-index: 2;
       margin: 0 auto;
       text-align: center;
       animation: fadeInUp 1s ease 0.4s backwards;
@@ -154,66 +272,154 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Основний контент */
-    .content {
-      padding: 60px 70px;
+    .header-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 40px;
+      animation: fadeInUp 1s ease 0.6s backwards;
     }
 
-    .section {
-      margin-bottom: 50px;
-      padding-bottom: 50px;
-      border-bottom: 2px solid #f0f0f0;
-      scroll-margin-top: 20px;
+    .header-btn {
+      padding: 15px 35px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
     }
 
-    .section:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
+    .header-btn.primary {
+      background: white;
+      color: var(--primary);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .header-btn.primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    }
+
+    .header-btn.secondary {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: 2px solid white;
+      backdrop-filter: blur(10px);
+    }
+
+    .header-btn.secondary:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-3px);
+    }
+
+    /* Секції на всю ширину */
+    .section-wrapper {
+      width: 100%;
+      padding: 80px 60px;
+    }
+
+    .section-wrapper:nth-child(even) {
+      background: white;
+    }
+
+    .section-wrapper:nth-child(odd) {
+      background: #fafbff;
+    }
+
+    .section-content {
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
     .section-title {
-      font-size: 1.8rem;
+      font-size: 2.2rem;
       font-weight: 700;
       color: var(--primary);
       margin-bottom: 20px;
       display: flex;
       align-items: center;
       gap: 12px;
+      text-align: center;
+      justify-content: center;
     }
 
     .section-title::before {
       content: '';
       width: 5px;
-      height: 28px;
+      height: 35px;
       background: var(--gradient);
       border-radius: 3px;
     }
 
     .section-text {
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       color: var(--text-gray);
       line-height: 1.8;
       margin-bottom: 15px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Статистика */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin: 60px 0;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      transition: all 0.4s ease;
+      border: 2px solid transparent;
+    }
+
+    .stat-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(77,108,250,0.2);
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 800;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+
+    .stat-label {
+      color: var(--text-gray);
+      font-size: 1rem;
+      font-weight: 500;
     }
 
     /* Прототипи */
     .prototypes {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 35px;
-      margin-top: 40px;
+      gap: 40px;
+      margin-top: 50px;
     }
 
     .proto-card {
       background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
       border-radius: 20px;
-      padding: 35px 25px;
+      padding: 40px 30px;
       text-align: center;
       transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       border: 2px solid transparent;
       position: relative;
       overflow: hidden;
+      cursor: pointer;
     }
 
     .proto-card::before {
@@ -239,9 +445,9 @@
 
     .proto-card img {
       width: 100%;
-      height: 240px;
+      height: 260px;
       object-fit: contain;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       transition: transform 0.5s ease;
     }
 
@@ -251,56 +457,57 @@
 
     .proto-card h4 {
       color: var(--primary);
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       font-weight: 700;
     }
 
     .proto-evolution {
       text-align: center;
-      margin-top: 30px;
-      padding: 18px;
+      margin-top: 40px;
+      padding: 20px;
       background: linear-gradient(135deg, #f0f2ff 0%, #ffffff 100%);
       border-radius: 16px;
-      font-size: 1rem;
+      font-size: 1.1rem;
       color: var(--text-gray);
-      border-left: 4px solid var(--primary);
+      border-left: 5px solid var(--primary);
     }
 
     .proto-evolution strong {
       color: var(--primary);
-      font-weight: 600;
+      font-weight: 700;
     }
 
     /* Команда */
     .team-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
-      margin-top: 40px;
+      gap: 50px;
+      margin-top: 50px;
     }
 
     .team-member {
       text-align: center;
-      padding: 30px;
+      padding: 40px;
       background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
       border-radius: 20px;
       transition: all 0.4s ease;
       border: 2px solid transparent;
+      cursor: pointer;
     }
 
     .team-member:hover {
       background: linear-gradient(135deg, #f0f2ff 0%, #ffffff 100%);
-      transform: translateY(-8px);
+      transform: translateY(-10px);
       border-color: rgba(77,108,250,0.3);
-      box-shadow: 0 15px 40px rgba(77,108,250,0.15);
+      box-shadow: 0 20px 50px rgba(77,108,250,0.2);
     }
 
     .team-photo {
-      width: 130px;
-      height: 130px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       object-fit: cover;
-      margin: 0 auto 18px;
+      margin: 0 auto 20px;
       border: 4px solid white;
       box-shadow: 0 8px 25px rgba(77,108,250,0.2);
       transition: all 0.4s ease;
@@ -313,83 +520,84 @@
 
     .team-member h4 {
       color: var(--text-dark);
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: 600;
-      margin-bottom: 5px;
+      margin-bottom: 8px;
     }
 
     .team-role {
       color: var(--primary);
-      font-size: 0.9rem;
-      font-weight: 500;
-      margin-bottom: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 15px;
     }
 
     .team-bio {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: var(--text-gray);
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     /* Контакти */
     .contacts-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-      margin-top: 40px;
+      gap: 40px;
+      margin-top: 50px;
     }
 
     .contact-box {
       background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
-      padding: 30px;
-      border-radius: 16px;
+      padding: 40px;
+      border-radius: 20px;
       text-align: center;
       transition: all 0.4s ease;
       border: 2px solid transparent;
+      cursor: pointer;
     }
 
     .contact-box:hover {
       background: var(--primary);
       color: white;
-      transform: translateY(-5px) scale(1.03);
+      transform: translateY(-8px) scale(1.03);
       border-color: var(--primary);
-      box-shadow: 0 15px 40px rgba(77,108,250,0.3);
+      box-shadow: 0 20px 50px rgba(77,108,250,0.3);
     }
 
     .contact-box:hover .contact-icon {
-      transform: scale(1.1) rotate(10deg);
+      transform: scale(1.15) rotate(10deg);
     }
 
+    .contact-box:hover h4,
     .contact-box:hover a {
       color: white;
     }
 
     .contact-icon {
-      font-size: 2rem;
-      margin-bottom: 10px;
+      font-size: 2.5rem;
+      margin-bottom: 15px;
       transition: transform 0.3s;
     }
 
     .contact-box h4 {
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      transition: color 0.3s;
     }
 
     .contact-box a {
       color: var(--text-gray);
       text-decoration: none;
-      font-size: 0.95rem;
+      font-size: 1rem;
       transition: color 0.3s;
     }
 
-    /* CTA кнопка */
+    /* CTA секція */
     .cta-section {
       background: var(--gradient);
-      padding: 50px;
-      border-radius: 16px;
+      padding: 80px 60px;
       text-align: center;
-      margin: 40px 0;
       position: relative;
       overflow: hidden;
     }
@@ -410,36 +618,37 @@
       50% { transform: scale(1.1); opacity: 0.8; }
     }
 
-    .cta-section h3 {
-      color: white;
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 15px;
+    .cta-content {
+      max-width: 900px;
+      margin: 0 auto;
       position: relative;
       z-index: 1;
     }
 
+    .cta-section h3 {
+      color: white;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
     .cta-section p {
       color: rgba(255,255,255,0.95);
-      font-size: 1.1rem;
-      margin-bottom: 25px;
-      position: relative;
-      z-index: 1;
+      font-size: 1.2rem;
+      margin-bottom: 30px;
     }
 
     .btn-primary {
       background: white;
       color: var(--primary);
-      padding: 15px 40px;
+      padding: 18px 45px;
       border-radius: 50px;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       font-weight: 600;
       text-decoration: none;
       display: inline-block;
       transition: all 0.3s;
       box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      position: relative;
-      z-index: 1;
       cursor: pointer;
       border: none;
     }
@@ -457,17 +666,21 @@
     /* Футер */
     .footer {
       background: #1a1a2e;
-      padding: 40px 60px;
+      padding: 50px 60px;
       color: #999;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       text-align: center;
-      position: relative;
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
     .footer-logo {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto 20px;
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 25px;
       opacity: 0.7;
       transition: all 0.3s ease;
     }
@@ -665,33 +878,73 @@
     }
 
     /* Responsive */
+    @media (max-width: 1200px) {
+      .nav-container, .header-content, .section-content, .cta-content, .footer-content {
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+      .section-wrapper {
+        padding: 60px 40px;
+      }
+    }
+
     @media (max-width: 900px) {
-      .document { margin: 20px; }
-      .header, .content, .footer { padding: 40px 35px; }
-      .prototypes, .team-grid, .contacts-grid { grid-template-columns: 1fr; }
+      .prototypes, .team-grid, .contacts-grid, .stats-grid { 
+        grid-template-columns: 1fr; 
+      }
       .header .subtitle { font-size: 1.15rem; }
       .header h1 { font-size: 3.5rem; letter-spacing: 5px; }
+      .nav-links { display: none; }
+      .header-buttons { flex-direction: column; }
+      .section-wrapper {
+        padding: 50px 30px;
+      }
     }
 
     @media (max-width: 600px) {
-      .header, .content, .footer { padding: 30px 25px; }
       .header h1 { font-size: 2.5rem; letter-spacing: 3px; }
-      .section-title { font-size: 1.4rem; }
+      .section-title { font-size: 1.6rem; }
       .modal-content { padding: 35px 25px; }
       .proto-card img { height: 180px; }
+      .scroll-top { bottom: 20px; right: 20px; width: 45px; height: 45px; }
+      .nav-container {
+        padding: 0 20px;
+      }
+      .section-wrapper {
+        padding: 40px 20px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="document">
-    <!-- Шапка -->
-    <div class="header">
-      <div class="particles" id="particles"></div>
-      <div class="pulse-ring"></div>
-      <div class="pulse-ring" style="animation-delay: 1s;"></div>
-      <div class="pulse-ring" style="animation-delay: 2s;"></div>
-      
+  <!-- Навігація -->
+  <nav class="nav" id="nav">
+    <div class="nav-container">
+      <div class="nav-logo">SERENITY</div>
+      <ul class="nav-links">
+        <li><a href="#about">Про проєкт</a></li>
+        <li><a href="#prototypes">Прототипи</a></li>
+        <li><a href="#team">Команда</a></li>
+        <li><a href="#contacts">Контакти</a></li>
+      </ul>
+      <button class="nav-cta" onclick="openModal(event)">Інвестувати</button>
+    </div>
+  </nav>
+
+  <!-- Кнопка вгору -->
+  <div class="scroll-top" id="scrollTop" onclick="scrollToTop()">
+    ↑
+  </div>
+
+  <!-- Шапка -->
+  <div class="header">
+    <div class="particles" id="particles"></div>
+    <div class="pulse-ring"></div>
+    <div class="pulse-ring" style="animation-delay: 1s;"></div>
+    <div class="pulse-ring" style="animation-delay: 2s;"></div>
+    
+    <div class="header-content">
       <div class="logo-title">
         <h1>SERENITY</h1>
       </div>
@@ -699,114 +952,146 @@
       <div class="subtitle">
         Автономний браслет нейрорегуляції для миттєвого спокою — без смартфона, без мережі. Інноваційне рішення для управління стресом у будь-якій ситуації.
       </div>
+
+      <div class="header-buttons">
+        <button class="header-btn primary" onclick="openModal(event)">Залишити заявку</button>
+        <a href="#about" class="header-btn secondary">Дізнатися більше</a>
+      </div>
     </div>
+  </div>
 
-    <!-- Основний контент -->
-    <div class="content">
-      
-      <!-- Про проєкт -->
-      <div class="section" id="about">
-        <h2 class="section-title">Про проєкт</h2>
-        <p class="section-text">
-          Serenity — це революційний носимий пристрій, розроблений для допомоги людям у керуванні стресом та тривожністю в режимі реального часу. На відміну від традиційних рішень, що потребують підключення до смартфона або інтернету, Serenity працює повністю автономно.
-        </p>
-        <p class="section-text">
-          Наша технологія поєднує нейровібраційне заземлення з голосовим супроводом, створюючи персоналізований досвід заспокоєння, доступний у будь-який момент. Це не просто гаджет — це ваш особистий асистент ментального здоров'я, що завжди з вами.
-        </p>
-        <p class="section-text">
-          Ринок носимих пристроїв для здоров'я зростає на 20% щорічно, а попит на рішення для ментального здоров'я досяг історичного максимуму. Serenity займає унікальну нішу — ми створюємо не просто трекер, а активний інструмент втручання та підтримки.
-        </p>
-      </div>
-
-      <!-- Прототипи -->
-      <div class="section" id="prototypes">
-        <h2 class="section-title">Еволюція прототипів</h2>
-        <p class="section-text">
-          Наша команда пройшла шлях від концепції до функціонуючих прототипів. Кожна ітерація приносила нові інсайти та вдосконалення технології.
-        </p>
-        <div class="prototypes">
-          <div class="proto-card">
-            <img src="1.png" alt="Serenity Alpha">
-            <h4>Serenity Alpha</h4>
-          </div>
-          <div class="proto-card">
-            <img src="2.png" alt="Serenity Pulse">
-            <h4>Serenity Pulse</h4>
-          </div>
-          <div class="proto-card">
-            <img src="3.png" alt="Serenity Core">
-            <h4>Serenity Core</h4>
-          </div>
+  <!-- Статистика -->
+  <div class="section-wrapper">
+    <div class="section-content">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">20%</div>
+          <div class="stat-label">Річне зростання ринку</div>
         </div>
-        <div class="proto-evolution">
-          Alpha → Pulse → Core → <strong>Наступний крок: Serenity AI з машинним навчанням</strong>
+        <div class="stat-card">
+          <div class="stat-number">3+</div>
+          <div class="stat-label">Робочі прототипи</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Автономність роботи</div>
         </div>
       </div>
-
-      <!-- Команда -->
-      <div class="section" id="team">
-        <h2 class="section-title">Наша команда</h2>
-        <p class="section-text">
-          Ми — мультидисциплінарна команда професіоналів, які об'єднали експертизу в нейронауці, інженерії та дизайні для створення продукту світового рівня.
-        </p>
-        <div class="team-grid">
-          <div class="team-member">
-            <img src="anhelina.jpg" alt="CEO" class="team-photo">
-            <h4>Ангеліна Долгозвяга</h4>
-            <div class="team-role">CEO & Засновник</div>
-            <p class="team-bio">Нейробіолог з 10-річним досвідом у розробці медичних пристроїв. PhD у когнітивній нейронауці.</p>
-          </div>
-          <div class="team-member">
-            <img src="julia.jpg" alt="CTO" class="team-photo">
-            <h4>Юлія Каськова</h4>
-            <div class="team-role">CTO & Lead Engineer</div>
-            <p class="team-bio">Експерт у носимих пристроях та IoT. Колишній провідний інженер у провідній tech-компанії.</p>
-          </div>
-          <div class="team-member">
-            <img src="dasha.jpg" alt="Head of Design" class="team-photo">
-            <h4>Дар'я Гончаренко</h4>
-            <div class="team-role">Head of Design</div>
-            <p class="team-bio">UX/UI дизайнер з фокусом на health tech. Створює інтерфейси, що рятують життя.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- CTA -->
-      <div class="cta-section">
-        <h3>Приєднуйтесь до революції ментального здоров'я</h3>
-        <p>Будьте серед перших, хто отримає доступ до Serenity та спеціальні інвестиційні умови</p>
-        <button class="btn-primary" onclick="openModal(event)">Залишити заявку</button>
-      </div>
-
-      <!-- Контакти -->
-      <div class="section" id="contacts">
-        <h2 class="section-title">Контакти</h2>
-        <p class="section-text">
-          Маєте питання або бажаєте обговорити інвестиційні можливості? Ми завжди відкриті до діалогу.
-        </p>
-        <div class="contacts-grid">
-          <div class="contact-box">
-            <div class="contact-icon">📧</div>
-            <h4>Email</h4>
-            <a href="mailto:invest@serenity.ua">invest@serenity.ua</a>
-          </div>
-          <div class="contact-box">
-            <div class="contact-icon">📱</div>
-            <h4>Телефон</h4>
-            <a href="tel:+380963456789">+38 (096) 345-67-89</a>
-          </div>
-          <div class="contact-box">
-            <div class="contact-icon">💬</div>
-            <h4>Telegram</h4>
-            <a href="https://t.me/serenity_invest" target="_blank">@serenity_invest</a>
-          </div>
-        </div>
-      </div>
-
     </div>
+  </div>
 
-    <!-- Футер -->
-    <div class="footer">
+  <!-- Про проєкт -->
+  <div class="section-wrapper" id="about">
+    <div class="section-content">
+      <h2 class="section-title">Про проєкт</h2>
+      <p class="section-text">
+        Serenity — це революційний носимий пристрій, розроблений для допомоги людям у керуванні стресом та тривожністю в режимі реального часу. На відміну від традиційних рішень, що потребують підключення до смартфона або інтернету, Serenity працює повністю автономно.
+      </p>
+      <p class="section-text">
+        Наша технологія поєднує нейровібраційне заземлення з голосовим супроводом, створюючи персоналізований досвід заспокоєння, доступний у будь-який момент. Це не просто гаджет — це ваш особистий асистент ментального здоров'я, що завжди з вами.
+      </p>
+      <p class="section-text">
+        Ринок носимих пристроїв для здоров'я зростає на 20% щорічно, а попит на рішення для ментального здоров'я досяг історичного максимуму. Serenity займає унікальну нішу — ми створюємо не просто трекер, а активний інструмент втручання та підтримки.
+      </p>
+    </div>
+  </div>
+
+  <!-- Прототипи -->
+  <div class="section-wrapper" id="prototypes">
+    <div class="section-content">
+      <h2 class="section-title">Еволюція прототипів</h2>
+      <p class="section-text">
+        Наша команда пройшла шлях від концепції до функціонуючих прототипів. Кожна ітерація приносила нові інсайти та вдосконалення технології.
+      </p>
+      <div class="prototypes">
+        <div class="proto-card">
+          <img src="1.png" alt="Serenity Alpha">
+          <h4>Serenity Alpha</h4>
+        </div>
+        <div class="proto-card">
+          <img src="2.png" alt="Serenity Pulse">
+          <h4>Serenity Pulse</h4>
+        </div>
+        <div class="proto-card">
+          <img src="3.png" alt="Serenity Core">
+          <h4>Serenity Core</h4>
+        </div>
+      </div>
+      <div class="proto-evolution">
+        Alpha → Pulse → Core → <strong>Наступний крок: Serenity AI з машинним навчанням</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Команда -->
+  <div class="section-wrapper" id="team">
+    <div class="section-content">
+      <h2 class="section-title">Наша команда</h2>
+      <p class="section-text">
+        Ми — мультидисциплінарна команда професіоналів, які об'єднали експертизу в нейронауці, інженерії та дизайні для створення продукту світового рівня.
+      </p>
+      <div class="team-grid">
+        <div class="team-member">
+          <img src="anhelina.jpg" alt="CEO" class="team-photo">
+          <h4>Ангеліна Долгозвяга</h4>
+          <div class="team-role">CEO & Product Owner</div>
+          <p class="team-bio">Студентка 3 курсу ОНЕУ спеціальність маркетинг. Закінчила комп'ютерну академію ШАГ (IT STEP Academy)</p>
+        </div>
+        <div class="team-member">
+          <img src="julia.jpg" alt="CTO" class="team-photo">
+          <h4>Юлія Каськова</h4>
+          <div class="team-role">CMO & Head of Marketing</div>
+          <p class="team-bio">Студентка 3 курсу ОНЕУ спеціальність маркетинг.</p>
+        </div>
+        <div class="team-member">
+          <img src="dasha.jpg" alt="Head of Design" class="team-photo">
+          <h4>Дар'я Гончаренко</h4>
+          <div class="team-role">Content Marketing Specialist</div>
+          <p class="team-bio">Студентка 3 курсу ОНЕУ спеціальність маркетинг.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-content">
+      <h3>Приєднуйтесь до революції ментального здоров'я</h3>
+      <p>Будьте серед перших, хто отримає доступ до Serenity та спеціальні інвестиційні умови</p>
+      <button class="btn-primary" onclick="openModal(event)">Залишити заявку</button>
+    </div>
+  </div>
+
+  <!-- Контакти -->
+  <div class="section-wrapper" id="contacts">
+    <div class="section-content">
+      <h2 class="section-title">Контакти</h2>
+      <p class="section-text">
+        Маєте питання або бажаєте обговорити інвестиційні можливості? Ми завжди відкриті до діалогу.
+      </p>
+      <div class="contacts-grid">
+        <div class="contact-box" onclick="window.location.href='mailto:invest@serenity.ua'">
+          <div class="contact-icon">📧</div>
+          <h4>Email</h4>
+          <a href="mailto:invest@serenity.ua">invest@serenity.ua</a>
+        </div>
+        <div class="contact-box" onclick="window.location.href='tel:+380963456789'">
+          <div class="contact-icon">📱</div>
+          <h4>Телефон</h4>
+          <a href="tel:+380963456789">+38 (096) 345-67-89</a>
+        </div>
+        <div class="contact-box" onclick="window.open('https://t.me/serenity_invest', '_blank')">
+          <div class="contact-icon">💬</div>
+          <h4>Telegram</h4>
+          <a href="https://t.me/serenity_invest" target="_blank">@serenity_invest</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Футер -->
+  <div class="footer">
+    <div class="footer-content">
       <div class="footer-logo">
         <img src="4.png" alt="Serenity">
       </div>
@@ -819,7 +1104,7 @@
   </div>
 
   <!-- Модальне вікно -->
-  <div class="modal" id="orderModal">
+  <div class="modal" id="orderModal" onclick="closeModalOnBackdrop(event)">
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal()">&times;</button>
       
@@ -840,7 +1125,7 @@
           
           <div class="form-group">
             <label for="phone">Телефон</label>
-                        <input type="tel" id="phone" name="phone" placeholder="+380XXXXXXXXX">
+            <input type="tel" id="phone" name="phone" placeholder="+380XXXXXXXXX">
           </div>
 
           <div class="form-group">
@@ -861,13 +1146,52 @@
   </div>
 
 <script>
+// Навігація при скролі
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('nav');
+  const scrollTop = document.getElementById('scrollTop');
+  
+  if (window.scrollY > 100) {
+    nav.classList.add('visible');
+    scrollTop.classList.add('visible');
+  } else {
+    nav.classList.remove('visible');
+    scrollTop.classList.remove('visible');
+  }
+});
+
+// Скрол вгору
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+
+// Модальне вікно
 function openModal(event) {
   event.preventDefault();
   document.getElementById("orderModal").classList.add("active");
+  document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
-  document.getElementById("orderModal").classList.remove("active");
+  const modal = document.getElementById("orderModal");
+  modal.classList.remove("active");
+  document.body.style.overflow = 'auto';
+  
+  // Скидання форми після закриття
+  setTimeout(() => {
+    document.getElementById("formSection").style.display = "block";
+    document.getElementById("successSection").classList.remove("active");
+    document.querySelector('.order-form').reset();
+  }, 300);
+}
+
+function closeModalOnBackdrop(event) {
+  if (event.target.id === "orderModal") {
+    closeModal();
+  }
 }
 
 function submitForm(event) {
@@ -888,14 +1212,23 @@ function createParticles() {
     particle.style.height = size + "px";
     particle.style.left = Math.random() * 100 + "%";
     particle.style.animationDuration = 8 + Math.random() * 14 + "s";
+    particle.style.animationDelay = Math.random() * 5 + "s";
     container.appendChild(particle);
   }
 }
 createParticles();
+
+// Закриття модального вікна по Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeModal();
+  }
+});
 </script>
 
 </body>
 </html>
+
 
 
 
